@@ -1,0 +1,197 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: rgb(18,18,18);     
+    /*background-size: auto 100vh;
+    height: 100vh;*/   
+    
+}
+
+/*Configurações do menu*/
+header{
+    background-color: cornflowerblue;
+    color: whitesmoke;
+    font-family: 'Lobster', cursive;
+    height: 40px;
+    min-height: 6vh;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    width: 100,1%;
+}
+nav{
+    /*Configuração do  fundo*/
+    background-color: cornflowerblue;
+    background-image: url('simbolo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    border: solid 5px cornflowerblue;
+    padding: 15px 0px 15px 0px;
+    position: sticky;
+    text-align: center;
+    top: 0px;
+    width: 100,1%;
+    z-index: 1;
+}
+nav h5{
+    margin-left: 3px;
+    text-align: left;
+}
+nav h5 a{
+    background-color:cornflowerblue;
+    color: whitesmoke;
+    padding: 1.5px; 
+    text-decoration: none;
+    transition: background-color 0.5s, color 1.2s;
+}
+nav h5 a:hover,
+nav h5 a:active{
+    background-color: whitesmoke;
+    color: cornflowerblue;
+}
+
+/*Configurações gerais das caixas*/
+main{
+    margin: 70px 0px 70px 0px;
+    min-height: 95vh;   
+}
+.box{
+    background-color: rgb(29, 29, 31);
+    border: 1px solid black;
+    border-radius: 10px;
+    color: whitesmoke;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin: 10px auto 35px auto;
+    padding: 2% 0.5% 2% 0.5%;
+    position: relative;
+    text-align: left;  
+    width: 90vw; 
+}
+.box h2,.box label,p,h4{
+    display: block;
+    margin: 0px auto 0px auto;
+    width: 90%;
+}
+.input{
+    background-color: rgb(236, 227, 227);
+    border: none;
+    border-radius: 5px;
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin: 2px auto 2px auto;
+    padding: 5px;
+    width: 90%;
+}
+.resultado{
+    background-color: rgb(93, 147, 247);
+    border-radius: 5px;
+    display: none;  
+    margin: 10px auto 1px auto;
+    padding: 6px;
+    width: 90%;
+    word-wrap: break-word; /*Limita o conteudo à largura da div*/     
+}
+.resultado h4{
+    text-align: justify;
+    white-space: nowrap;
+}
+#botao-numeros,
+#botao-nomes,
+#botao-arquivo{
+    background-color: cornflowerblue;
+    cursor: pointer;
+    margin-top: 5px;
+}
+#botao-numeros:hover,
+#botao-nomes:hover,
+#botao-arquivo:hover,
+#botao-numeros:active,
+#botao-nomes:active,
+#botao-arquivo:active{
+   width: 90.5%; 
+}
+
+/*Configurações expecificas das caixas*/
+/*Nomes*/
+#sorteio-nomes textarea{
+    resize: vertical;
+}
+select{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+/*Arquivo*/        
+#labelArquivo{                        
+    color:rgb(29, 29, 31);
+    cursor: pointer;
+    display: block;
+    font-size: 15px;
+    margin-top: 2px;
+}
+#labelArquivo:hover,
+#labelArquivo:active{
+    width: 90.5%;
+}
+#inputArquivo{
+    display: none;
+}
+#sorteio-arquivo p{
+    font-size: 11px;
+   /*color: rgb(206, 103, 103);*/ 
+}
+
+/*Configurações da adaptação ao tamanho da tela*/
+@media(min-width:480px){
+    .box{
+        width: 45vw;
+    }
+}
+@media(max-width:479px){
+    .box{
+        width: 90vw;
+        padding: 25px 15px 25px 15px;
+    }
+}
+@media(min-width:1200px){
+    .box{
+        width: 40vw; 
+    }
+}
+
+/*Configurações da linha divisória*/
+hr{ 
+    border:1px dashed whitesmoke;
+    size: 1;
+}
+
+/*Configurações do rodapé*/
+footer{
+    background-color: rgb(18,18,18);
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    min-height: 4vh;  
+    padding-top: 3px 0px 3px 0px;
+    width: 100%;
+}
+#by{
+    color: whitesmoke;
+    font-size: 10px;
+    padding: 2px 0px 0px 0px;
+    text-align: center;
+}
+#redes-sociais{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: auto;
+    padding: 2px 0px 2px 0px;
+    text-align: center;
+    width: 40vw;
+}    
+#redes-sociais a{
+    color: whitesmoke;
+    display: block;
+    font-size: 10px;
+    text-decoration: none;
+}
