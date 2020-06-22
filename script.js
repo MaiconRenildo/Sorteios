@@ -9,8 +9,12 @@ function Sorteio_numeros(){
     let resultado_numeros=document.getElementById('resultado-numeros')
      
 /*Verificação de possíveis erros*/
-if(quantidade_numeros=='' || inicio_numeros=='' || fim_numeros=='' || quantidade_numeros>(fim_numeros-inicio_numeros)) {
+if(quantidade_numeros=='' || inicio_numeros=='' || fim_numeros==''){
     alert('Erro!! Preencha devidamente todos os campos.')
+    resultado_numeros.style.display='none'
+}else if(quantidade_numeros>(fim_numeros-inicio_numeros)){
+    alert('Erro!! A quantidade de elementos a serem sorteados deve ser menor que o conjunto de elementos que podem ser sorteados')
+    resultado_numeros.style.display='none'
 }else{
     resultado_numeros.innerHTML='Resultado:&nbsp;'
     /*Conversão das variaveis de string para number*/
@@ -48,6 +52,7 @@ let resultado, tamanho, opcao, test1, test2, test3
 if(quantidade_nomes=='' || texto_nomes=='' || opcao_nomes=='Selecione uma opção'){
     alert('Erro!! Preencha todos os campos corretamente')
     resultado==''
+    resultado_nomes.style.display= "none"
 }else{
     switch(opcao_nomes){
         case 'opcao1': 
@@ -106,7 +111,8 @@ if(quantidade_nomes=='' || texto_nomes=='' || opcao_nomes=='Selecione uma opçã
         (opcao==2 && tamanho<=quantidade_nomes && (test1==-1 && test3==-1)) ||
         (opcao==3 && tamanho<=quantidade_nomes && (test2==-1 && test1==-1))
             ){
-            alert('Erro!! A quantidade de elementos a serem sorteados deve ser menor que o total do conteudo')
+            alert('Erro!! A quantidade de elementos a serem sorteados deve ser menor que o conjunto de elementos que podem ser sorteados')
+            resultado_nomes.style.display= "none"
     }else if(
         (opcao==1 && (( test1==-1) || test2!=-1 || test3!=-1))||
         (opcao==2 && (( test2==-1) || test1!=-1 || test3!=-1))||
