@@ -51,6 +51,84 @@ nav h5 a:active{
     background-color: whitesmoke;
     color: cornflowerblue;
 }
+/*Configurações dos Alertas*/
+#Alerta{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    display: none;
+    font-size: 1em;
+    height: 20vh;
+    min-height: 180px;
+    padding: 15px 15px 20px 15px;
+    position: fixed;
+    text-align: start; 
+    /*Alinhamento vertical e horizontal*/
+    top: 0; bottom: 0; left: 0; right: 0; margin: auto;
+    width: 30vw;
+    z-index: 1;
+}
+#Alerta h1{
+    background-color: cornflowerblue;
+    border: 0px;
+    margin: 0px;
+    padding: 0;
+    text-align: center;
+}
+#Erro{
+    border-bottom: 1px;
+    border-top: 1px;
+    color: whitesmoke;
+}
+#Atencao{
+    color: whitesmoke;
+    font-family: 'Teko', sans-serif;
+}
+#Alerta p{
+    color:rgb(29, 29, 31);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 4px;
+}
+#Alerta input{
+    background-color: rgb(93, 147, 247);
+    color: whitesmoke;
+    display: block;
+    font-family: 'Teko', sans-serif;
+    margin:auto;
+    margin-bottom: 4px;
+    padding: 0.5em;
+    width: 80px;
+}
+#Alerta input:hover{
+    background-color: whitesmoke;
+    color: rgb(93, 147, 247) ;
+    cursor: pointer;
+}
+/*Configurações de adapatção de tela do Alerta*/
+@media(max-width:600px){
+    #Alerta{
+        width: 80vw;
+    }
+}
+@media(min-width:601px){
+    #Alerta{
+        width: 65vw;
+    }
+}
+@media(min-width:701px){
+    #Alerta{
+        width: 55vw;
+    }
+}
+@media(min-width:801px){
+    #Alerta{
+        width: 45vw;
+    }
+}
+@media(min-width:900px){
+    #Alerta{
+        width: 40vw; 
+    }
+}
 
 /*Configurações gerais das caixas*/
 main{
@@ -113,6 +191,29 @@ main{
    width: 90.5%; 
 }
 
+/*Configurações da adaptação ao tamanho da tela das caixas*/
+@media(max-width:479px){
+    .box{
+        width: 90vw;
+        padding: 25px 15px 25px 15px;
+    }
+}
+@media(min-width:480px){
+    .box{
+        width: 45vw;
+    }
+}
+@media(min-width:800px){
+    .box{
+        width: 40vw; 
+    }
+}
+@media(min-width:901px){
+    .box{
+        width: 35vw;
+    }
+}
+
 /*Configurações expecificas das caixas*/
 /*Nomes*/
 #sorteio-nomes textarea{
@@ -140,24 +241,6 @@ select{
 #sorteio-arquivo p{
     font-size: 11px;
    /*color: rgb(206, 103, 103);*/ 
-}
-
-/*Configurações da adaptação ao tamanho da tela*/
-@media(min-width:480px){
-    .box{
-        width: 45vw;
-    }
-}
-@media(max-width:479px){
-    .box{
-        width: 90vw;
-        padding: 25px 15px 25px 15px;
-    }
-}
-@media(min-width:1200px){
-    .box{
-        width: 40vw; 
-    }
 }
 
 /*Configurações da linha divisória*/
