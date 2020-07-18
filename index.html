@@ -1,109 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteios</title>
-    <!--Link da fonte usada no título-->
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <!--Link da fonte usada em toda a página-->
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,600&display=swap" rel="stylesheet">
-    <!--Fonte dos alertas-->
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
-    <!--Fonte do icone de alerta-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css">
-    <link rel="stylesheet" href="./estilo.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorteios</title>
+  <!--Link da fonte usada no título-->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <!--Link da fonte usada em toda a página-->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,600&display=swap" rel="stylesheet">
+  <!--Fonte dos alertas-->
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+  <!--Fonte do icone de alerta-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css">
+  <link rel="stylesheet" href="./estilo.css">
 </head>
 
 <body>
-    <div id="Alerta">
-        <div id="AlertaElementos">
-            <h1></h1>
-            <p></p>            
-        </div>
-        <input type="button" value="Ok" id='botaoAlerta'>    
-        
+  <div id="Alerta">
+    <div id="AlertaElementos">
+      <h1></h1>
+      <p></p>
+    </div>
+    <input type="button" value="Ok" id='botaoAlerta'>
+
+  </div>
+
+  <header>
+    <h1>Site dos Sorteios</h1>
+  </header>
+  <nav>
+    <h5><a href="index.html">HOME</a></h5>
+  </nav>
+
+  <main>
+    <!-- SORTEIO DE NÚMEROS-->
+    <div class="box" id="sorteio-numeros">
+      <h2>Sorteio de Números<br></h2>
+
+      <label for="quantidade-numeros">Quantidade:<br></label>
+      <input type="number" id="quantidade-numeros" class="input" min="1">
+
+      <label for="inicio-numeros">Sortear de:<br></label>
+      <input type='number' id="inicio-numeros" min="1" class="input">
+
+      <label for="fim-numeros">Sortear até:<br></label>
+      <input type="number" id="fim-numeros" min="2" class="input">
+
+      <input type="button" value="Sortear" id="botao-numeros" class="input">
+      <div class="resultado" id="resultado-numeros">
+        <h4></h4>
+      </div>
     </div>
 
-    <header>
-           <h1>Site dos Sorteios</h1>       
-    </header>
-    <nav>
-        <h5><a href="index.html">HOME</a></h5>
-    </nav>
+    <!-- SORTEIO DE NOMES-->
+    <div class="box" id="sorteio-nomes">
+      <h2>Sorteio de Nomes</h2>
 
-    <main>
-        <!-- SORTEIO DE NÚMEROS-->
-        <div class="box" id="sorteio-numeros">
-            <h2>Sorteio de Números<br></h2>
+      <label for="quantidade-nomes">Quantidade:</label>
+      <input type="number" id="quantidade-nomes" min="1" class="input">
 
-            <label for="quantidade-numeros">Quantidade:<br></label>
-            <input type="number" id="quantidade-numeros" class="input" min="1">
+      <label for="opcao-nomes">Separador:</label>
+      <select name="opcao-nomes" id="opcao-nomes" class="input">
+        <option>Selecione uma opção</option>
+        <option class="option" value="opcao1">Quebra de linha</option>
+        <option class="option" value="opcao2">Vírgula(,)</option>
+        <option class="option" value="opcao3">Ponto e vírgula(;)</option>
+      </select>
 
-            <label for="inicio-numeros">Sortear de:<br></label>
-            <input type='number' id="inicio-numeros" min="1" class="input">
+      <label for="texto-nomes">Escreva os nomes separados de acordo com a opção selecionada</label>
+      <textarea name="texto-nomes" id="texto-nomes" cols="20" rows="5" class="input"></textarea>
 
-            <label for="fim-numeros">Sortear até:<br></label>
-            <input type="number" id="fim-numeros" min="2" class="input">
+      <input type="button" value="Sortear" class="input" id="botao-nomes">
 
-            <input type="button" value="Sortear" id="botao-numeros" class="input">
-            <div class="resultado" id="resultado-numeros"><h4></h4></div>
-        </div>
+      <div class="resultado" id="resultado-nomes">
+        <h4></h4>
+      </div>
+    </div>
 
-        <!-- SORTEIO DE NOMES-->
-        <div class="box" id="sorteio-nomes">
-            <h2>Sorteio de Nomes</h2>
+    <!-- SORTEIO POR ARQUIVO-->
+    <div class="box" id="sorteio-arquivo">
+      <h2>Sorteio com arquivo txt/csv</h2>
 
-            <label for="quantidade-nomes">Quantidade:</label>
-            <input type="number" id="quantidade-nomes" min="1" class="input">
+      <label for="quantidade-arquivo">Quantidade:</label>
+      <input type="number" id="quantidade-arquivo" min="1" class="input">
 
-            <label for="opcao-nomes">Separador:</label>
-            <select name="opcao-nomes" id="opcao-nomes" class="input">
-                <option>Selecione uma opção</option>
-                <option class="option" value="opcao1">Quebra de linha</option>
-                <option class="option" value="opcao2">Vírgula(,)</option>
-                <option class="option" value="opcao3">Ponto e vírgula(;)</option>
-            </select>
+      <h4>Arquivo:</h4>
+      <label for="inputArquivo" id="labelArquivo" class="input">Selecione um arquivo</label>
+      <p>**O conteudo deve estar separado por quebra de linha, vírgula ou ponto e vírgula**</p>
+      <input type="file" id="inputArquivo" class="input">
 
-            <label for="texto-nomes">Escreva os nomes separados de acordo com a opção selecionada</label>
-            <textarea name="texto-nomes" id="texto-nomes" cols="20" rows="5" class="input"></textarea>
+      <input type="button" value="Sortear" class="input" id="botao-arquivo">
 
-            <input type="button" value="Sortear" class="input" id="botao-nomes">
+      <div class="resultado" id="resultado-arquivo">
+        <h4></h4>
+      </div>
+    </div>
 
-            <div class="resultado" id="resultado-nomes"><h4></h4></div>
-        </div>
-
-        <!-- SORTEIO POR ARQUIVO-->
-        <div class="box" id="sorteio-arquivo">
-            <h2>Sorteio com arquivo txt/csv</h2>
-
-            <label for="quantidade-arquivo">Quantidade:</label>
-            <input type="number" id="quantidade-arquivo" min="1" class="input">
-
-            <h4>Arquivo:</h4>
-            <label for="inputArquivo" id="labelArquivo" class="input">Selecione um arquivo</label>         
-            <p>**O conteudo deve estar separado por quebra de linha, vírgula ou ponto e vírgula**</p>
-            <input type="file" id="inputArquivo" class="input">
-            
-            <input type="button" value="Sortear" class="input" id="botao-arquivo">
-
-            <div class="resultado" id="resultado-arquivo"><h4></h4></div>
-        </div>
-
-    </main>
-    <hr>
-    <footer>
-        <div id="rodape">
-            <div id="by">
-                <h3> &copy;Copyright 2020 - Maicon Renildo </h3>
-            </div>
-            <div id="redes-sociais">
-                <h3><a href="https://www.facebook.com/maicon.renildo" target="_blank">Facebook</a></h3>
-                <h3><a href="https://github.com/MaiconRenildo" target="_blank">GitHub</a></h3>
-                <h3><a href="https://br.linkedin.com/in/maicon-renildo-713a36181" target="_blank">Linkedin</a></h3>            
-            </div>
-        </div>
-    </footer>
+  </main>
+  <hr>
+  <footer>
+    <div id="rodape">
+      <div id="by">
+        <h3> &copy;Copyright 2020 - Maicon Renildo </h3>
+      </div>
+      <div id="redes-sociais">
+        <h3><a href="https://www.facebook.com/maicon.renildo" target="_blank">Facebook</a></h3>
+        <h3><a href="https://github.com/MaiconRenildo" target="_blank">GitHub</a></h3>
+        <h3><a href="https://br.linkedin.com/in/maicon-renildo-713a36181" target="_blank">Linkedin</a></h3>
+      </div>
+    </div>
+  </footer>
 </body>
-    <script src="./script.js"></script>
+<script src="./script.js"></script>
+
 </html>
