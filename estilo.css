@@ -200,17 +200,17 @@ main{
 }
 @media(min-width:480px){
     .box{
-        width: 45vw;
+        width: 70vw;
     }
 }
 @media(min-width:800px){
     .box{
-        width: 40vw; 
+        width: 65vw; 
     }
 }
-@media(min-width:901px){
+@media(min-width:1200px){
     .box{
-        width: 35vw;
+        width: 40vw;
     }
 }
 

@@ -3,7 +3,7 @@ var Alerta = document.getElementById('Alerta')
 var AlertaElementos = document.getElementById('AlertaElementos')
 var botaoAlerta = document.getElementById('botaoAlerta')
 
-//SORTEIO DE NÚMEROS
+////////////////////////////SORTEIO DE NÚMEROS/////////////////////////////////
 var botao_numeros = document.getElementById('botao-numeros')
 botao_numeros.addEventListener('click', Sorteio_numeros)
 function Sorteio_numeros() {
@@ -14,23 +14,13 @@ function Sorteio_numeros() {
   let resultado_numeros = document.getElementById('resultado-numeros')
 
   /*Verificação de possíveis erros*/
-  if (quantidade_numeros == '' || inicio_numeros == '' || fim_numeros == '') {
-    //ALERTA
-    AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Preencha todos os campos corretamente.</p>`
-    Alerta.style.display = 'block'
-    botaoAlerta.addEventListener('click', fecharAlerta)
-
-    resultado_numeros.style.display = 'none'
+  if (quantidade_numeros == '' || quantidade_numeros==0 || inicio_numeros == '' || fim_numeros == '') {
+    abrirAlertas(0,resultado_numeros)
   } else if (quantidade_numeros > (fim_numeros - inicio_numeros)) {
-    //ALERTA
-    AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>A quantidade de elementos a serem sorteados deve ser menor que o conjunto de elementos que podem ser sorteados.</p>`
-    Alerta.style.display = 'block'
-    botaoAlerta.addEventListener('click', fecharAlerta)
-
-    resultado_numeros.style.display = 'none'
+    abrirAlertas(1,resultado_numeros)
   } else {
     resultado_numeros.innerHTML = 'Resultado:&nbsp;'
-    /*Conversão das variaveis de string para number*/
+    /*Conversão das variaveis de string para number*/    
     quantidade_numeros = Number(quantidade_numeros)
     inicio_numeros = Number(inicio_numeros)
     fim_numeros = Number(fim_numeros)
@@ -39,7 +29,7 @@ function Sorteio_numeros() {
     let valor = 0
     let c = 0
     while (c < quantidade_numeros) {
-      valor = square(inicio_numeros, fim_numeros)
+      valor = NumeroAleatorio(inicio_numeros, fim_numeros)
       if (resposta.indexOf(valor) == -1) {
         resposta[c] = valor
         c++
@@ -50,7 +40,7 @@ function Sorteio_numeros() {
   }
 }
 
-//SORTEIO DE NOMES
+////////////////////////////SORTEIO DE NOMES//////////////////////
 var botao_nomes = document.getElementById('botao-nomes')
 botao_nomes.addEventListener('click', Sorteio_nomes)
 function Sorteio_nomes() {
@@ -62,14 +52,9 @@ function Sorteio_nomes() {
   //Variaveis para testes de verificação do separador
   let resultado, tamanho, opcao, test1, test2, test3
 
-  if (quantidade_nomes == '' || texto_nomes == '' || opcao_nomes == 'Selecione uma opção') {
-    //ALERTA
-    AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Preencha todos os campos corretamente.</p>`
-    Alerta.style.display = 'block'
-    botaoAlerta.addEventListener('click', fecharAlerta)
-
-    resultado == ''
-    resultado_nomes.style.display = "none"
+  if (quantidade_nomes == '' || quantidade_nomes==0 || texto_nomes == '' || opcao_nomes == 'Selecione uma opção') {
+    resultado =''
+    abrirAlertas(0,resultado_nomes)
   } else {
     switch (opcao_nomes) {
       case 'opcao1':
@@ -102,29 +87,7 @@ function Sorteio_nomes() {
         tamanho = resultado.length
         break;
     }
-    let sem_repeticao = []
-    let valor = 0
-    let num = 0
-    let repeticao = 0
-    while (valor < tamanho) {
-      if ((sem_repeticao.indexOf(resultado[valor]) == -1) && resultado[valor] != 0) {
-        sem_repeticao[num] = resultado[valor]
-        num++
-        valor++
-      } else if (resultado[valor] == 0) {
-        valor++
-      } else {
-        repeticao++
-        valor++
-      }
-    }
-    if (repeticao > 0) {
-      //ALERTA
-      AlertaElementos.innerHTML = `<h1 id='Atencao'>Atenção</h1><p>Elementos repetidos foram encontrados. Para maior eficiência do sorteio os mesmos foram desconsiderados.</p>`
-      Alerta.style.display = 'block'
-      botaoAlerta.addEventListener('click', fecharAlerta)
-
-    }
+    sem_repeticao=SemRepeticao(resultado,tamanho)
     tamanho = sem_repeticao.length
     //Verificação de possiveis Erros do usuário
     if (
@@ -132,47 +95,21 @@ function Sorteio_nomes() {
       (opcao == 2 && tamanho <= quantidade_nomes && (test1 == -1 && test3 == -1)) ||
       (opcao == 3 && tamanho <= quantidade_nomes && (test2 == -1 && test1 == -1))
     ) {
-      //ALERTA
-      AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>A quantidade de elementos a serem sorteados deve ser menor que o conjunto de elementos que podem ser sorteados.</p>`
-      Alerta.style.display = 'block'
-      botaoAlerta.addEventListener('click', fecharAlerta)
-
-      resultado_nomes.style.display = "none"
+      abrirAlertas(1,resultado_nomes)
     } else if (
       (opcao == 1 && ((test1 == -1) || test2 != -1 || test3 != -1)) ||
       (opcao == 2 && ((test2 == -1) || test1 != -1 || test3 != -1)) ||
       (opcao == 3 && ((test3 == -1) || test2 != -1 || test1 != -1))
-    ) { //OK
-      //ALERTA
-      AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Verifique se o conteúdo da lista está separado corretamente.</p>`
-      Alerta.style.display = 'block'
-      botaoAlerta.addEventListener('click', fecharAlerta)
-
+    ) { 
+      abrirAlertas(3,resultado_nomes)
     } else {
       resultado_nomes.innerHTML = `Resultado:&nbsp;`
-      /*Conversão das variaveis de string para number*/
-      quantidade_nomes = Number(quantidade_nomes)
-      /*Declaração de novas variaveis*/
-      num = 0
-      valor = 0
-      let valoresSorteados = []
-      let resultadoSorteio = []
-
-      while (num < (quantidade_nomes)) {
-        valor = square(0, (tamanho - 1))
-        if (valoresSorteados.indexOf(valor) == -1) {
-          valoresSorteados[num] = valor
-          resultadoSorteio[num] = sem_repeticao[valoresSorteados[num]]
-          num++
-        }
-      }
-      resultado_nomes.style.display = "block"
-      resultado_nomes.innerHTML += `${resultadoSorteio}`
+      Sorteio(resultado_nomes,sem_repeticao,quantidade_nomes)
     }
   }
 }
 
-//SORTEIO POR ARQUIVOS
+//////////////////////////SORTEIO POR ARQUIVOS
 //Seleciona o botao e adiciona o evento click
 var botao_arquivo = document.getElementById('botao-arquivo')
 botao_arquivo.addEventListener('click', Sorteio_arquivo)
@@ -187,7 +124,6 @@ var leitorDeArquivo = new FileReader() //Define a variavel como leitor de arquiv
 window.onload = function init() {//Executa a função init imediatamente após o carregamento da página
   leitorDeArquivo.onload = modelaConteudo; //O evento modelaConteudo é iniciado quando o arquivo termina de ser lido
 }
-
 //Definição das extenções
 var fileExtensionTXT = /text.*/;
 var fileExtensionCSV = /vnd.ms-excel.*/
@@ -208,88 +144,93 @@ function RecebeArquivo(inputFile) {
       console.info('O navegador não é compativel com a API.')
     }
   } else {
-    //ALERTA
-    AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Verifique o formato do Arquivo.</p>`
-    Alerta.style.display = 'block'
-    botaoAlerta.addEventListener('click', fecharAlerta)
+    abrirAlertas(4)
     file = ''
   }
 }
 var semRepeticao = []
+let conteudo=[]
 function modelaConteudo(evt) {
-  let conteudo = evt.target.result
+  conteudo = evt.target.result
   conteudo = conteudo.split('\n').join(',').split(';').join(',').split(',')
   let tamanho = conteudo.length
-
-  let valor = 0
-  let num = 0
-  let repeticao = 0
-  //Zera novamente para evitar possíveis erros
-  semRepeticao = []
-  while (valor < tamanho) {
-    if ((semRepeticao.indexOf(conteudo[valor].trim()) == -1) && conteudo[valor] != 0) {
-      semRepeticao[num] = conteudo[valor].trim()//.trim() remove possíveis espaços em branco desnecessários
-      num++
-      valor++
-    } else if (conteudo[valor] == 0) {
-      valor++
-    } else {
-      repeticao++
-      valor++
-    }
-  }
-  if (repeticao > 0) {
-    //ALERTA
-    AlertaElementos.innerHTML = `<h1 id='Atencao'>Atenção</h1><p>Elementos repetidos foram encontrados. Para maior eficiência do sorteio os mesmos serão desconsiderados.</p>`
-    Alerta.style.display = 'block'
-    botaoAlerta.addEventListener('click', fecharAlerta)
-
-  }
+  semRepeticao=SemRepeticao(conteudo,tamanho)
 }
 var resultado_arquivo = document.getElementById('resultado-arquivo')
 function Sorteio_arquivo() {
   let quantidade_arquivo = document.getElementById('quantidade-arquivo').value
   let tamanho
-  //let inputArquivo=document.getElementById('inputArquivo')//??????
-  if (quantidade_arquivo == '' || file == '') {
-    //ALERTA
-    AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Preencha todos os campos corretamente.</p>`
-    Alerta.style.display = 'block'
-    botaoAlerta.addEventListener('click', fecharAlerta)
-
+  if (quantidade_arquivo == '' || quantidade_arquivo==0 || file == '') {
+    abrirAlertas(0,resultado_arquivo)
   } else {
     tamanho = semRepeticao.length
     if (tamanho <= quantidade_arquivo) {
-      //ALERTA
-      AlertaElementos.innerHTML = `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>A quantidade de elementos a serem sorteados deve ser menor que o conjunto de elementos que podem ser sorteados.</p>`
-      Alerta.style.display = 'block'
-      botaoAlerta.addEventListener('click', fecharAlerta)
-
+      abrirAlertas(1,resultado_arquivo)
     } else {
-      let num = 0, valor = 0
-      let valoresSorteados = []
-      let resultadoSorteio = []
-
-      while (num < (quantidade_arquivo)) {
-        valor = square(0, (tamanho - 1))
-        if (valoresSorteados.indexOf(valor) == -1) {
-          valoresSorteados[num] = valor
-          resultadoSorteio[num] = semRepeticao[valoresSorteados[num]]
-          num++
-        }
-      }
-      //inputArquivo.style.display='block'
-      resultado_arquivo.style.display = 'block'
-      resultado_arquivo.innerHTML = `Resultado: ${resultadoSorteio}`
+      Sorteio(resultado_arquivo,semRepeticao,quantidade_arquivo)
     }
   }
 }
 
-//Função responsável pelos sorteios
-function square(a, b) {
+//////////////////////////Funções separadas
+function NumeroAleatorio(a, b) {
   return a + Math.round(Math.random() * (b - a))
 }
-//Função responsável por fechar o alerta
+
 function fecharAlerta() {
   Alerta.style.display = 'none'
+}
+
+function SemRepeticao(elemento,tamanho){
+  let sem_repeticao=[]
+  console.log(elemento)
+  let valor,num
+  valor=num=0
+  let repeticao=false
+  while(valor<tamanho){
+    if((sem_repeticao.indexOf(elemento[valor].trim())==-1) &&  elemento[valor]!=0){
+      sem_repeticao[num]=elemento[valor].trim()
+      num++
+    } else if (elemento[valor] == 0) {
+    } else {
+      repeticao=true
+    }
+    valor++
+  }
+  if (repeticao) {
+    abrirAlertas(2)
+  }
+  console.log(sem_repeticao)
+  return sem_repeticao
+}
+
+function Sorteio(resultado,array,quantidade){
+  let num,valor,resultadoSorteio
+  num=valor=0
+  resultadoSorteio = []
+  tamanho=array.length
+  
+  while (num < (quantidade)) {
+    valor = NumeroAleatorio(0, (tamanho - 1))
+    if(resultadoSorteio.indexOf(array[valor])==-1){
+      resultadoSorteio[num]=array[valor]
+      num++
+    }
+  }
+  resultado.style.display = "block"
+  resultado.innerHTML = `Resultado: ${resultadoSorteio}`
+}
+
+function abrirAlertas(posicao,resultado=''){
+  alertas=[`<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Preencha todos os campos corretamente.</p>`,
+  `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>A quantidade de elementos a serem sorteados deve ser menor que o conjunto de elementos que podem ser sorteados.</p>`,
+  `<h1 id='Atencao'>Atenção</h1><p>Elementos repetidos foram encontrados. Para maior eficiência do sorteio os mesmos foram desconsiderados.</p>`,
+  `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Verifique se o conteúdo da lista está separado corretamente.</p>`,
+  `<h1 id='Erro'><i class="fas fa-exclamation-triangle"></i></h1><p>Verifique o formato do Arquivo.</p>`]
+  AlertaElementos.innerHTML=alertas[posicao]
+  Alerta.style.display = 'block'
+  botaoAlerta.addEventListener('click', fecharAlerta)
+  if(resultado!=''){
+    resultado.style.display='none'
+  }
 }
