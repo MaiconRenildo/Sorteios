@@ -1,6 +1,6 @@
 # Sorteios
 
-<p>Consiste em uma página que permite ao usuário fazer sorteios de nomes e números. A página contém leitor de arquivos txt/csv. Link da página: https://maiconrenildo.github.io/Sorteios/<p>
+<p>Consiste em uma página que permite ao usuário fazer sorteios de nomes e números. A página contém leitor de arquivos txt/csv. Link: https://maiconrenildo.github.io/Sorteios/<p>
 
 
 ## Screenshots
